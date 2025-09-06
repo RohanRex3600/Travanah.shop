@@ -1,37 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travanah 🌍</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f8ff;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 {
-      color: #0066cc;
-    }
-    p {
-      font-size: 18px;
-      color: #333;
-    }
-    .box {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      display: inline-block;
-      box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travanah - Explore the World</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <div class="box">
-    <h1>Welcome to Travanah 🌍</h1>
-    <p>Your hub for travel tips, local guides, and real-world experiences.</p>
-    <p>🚀 This is just the beginning — more coming soon!</p>
-  </div>
+    <header class="hero-section">
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="logo">
+                    <img src="your-logo.png" alt="Travanah Logo" style="height: 40px;"> 
+                    Travanah
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#packages">Packages</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+        <div class="hero-content container">
+            <h1>Your Journey Begins Here</h1>
+            <p>Discover breathtaking destinations and create unforgettable memories with Travanah.</p>
+            <a href="#packages" class="btn btn-primary">Explore Packages</a>
+        </div>
+    </header>
+
+
+    <section id="destinations" class="section">
+        <div class="container">
+            <h2>Popular Destinations</h2>
+            <div class="destination-grid">
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1506197061617-dc7150c95213?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NDU3ODh8MHwxfHNlYXJjaHwxNXx8UGFyaXMlMjB0cmF2ZWx8ZW58MHx8fHwxNjk5MjI3MTA1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Paris">
+                    <h3>Paris, France</h3>
+                    <p>The City of Love, renowned for its art, fashion, and cuisine.</p>
+                </div>
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1549646535-983ce47dd020?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NDU3ODh8MHwxfHNlYXJjaHw3fHxTeWRuZXklMjBUcmF2ZWx8ZW58MHx8fHwxNjk5MjI3MTU5fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Sydney">
+                    <h3>Sydney, Australia</h3>
+                    <p>Iconic opera house, beautiful beaches, and vibrant city life.</p>
+                </div>
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1528127269322-c322b724570d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NDU3ODh8MHwxfHNlYXJjaHwxMHx8VHJhdmVsJTIwVG9reW98ZW58MHx8fHwxNjk5MjI3MjEyfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Tokyo">
+                    <h3>Tokyo, Japan</h3>
+                    <p>A mesmerizing blend of traditional culture and futuristic technology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="packages" class="section bg-light">
+        <div class="container">
+            <h2>Our Travel Packages</h2>
+            <div class="package-grid">
+                <div class="package-card">
+                    <h3>European Grand Tour</h3>
+                    <p class="price">$2,500 <span class="duration">/ 10 Days</span></p>
+                    <ul>
+                        <li><i class="fas fa-plane"></i> Flights included</li>
+                        <li><i class="fas fa-hotel"></i> 4-star accommodation</li>
+                        <li><i class="fas fa-car"></i> Guided tours</li>
+                        <li><i class="fas fa-utensils"></i> Daily breakfast</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">View Details</a>
+                </div>
+                <div class="package-card">
+                    <h3>Southeast Asian Adventure</h3>
+                    <p class="price">$1,800 <span class="duration">/ 7 Days</span></p>
+                    <ul>
+                        <li><i class="fas fa-plane"></i> Flights included</li>
+                        <li><i class="fas fa-hotel"></i> Boutique hotels</li>
+                        <li><i class="fas fa-ship"></i> Island hopping</li>
+                        <li><i class="fas fa-utensils"></i> Authentic local cuisine</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">View Details</a>
+                </div>
+                <div class="package-card">
+                    <h3>African Safari Experience</h3>
+                    <p class="price">$3,800 <span class="duration">/ 8 Days</span></p>
+                    <ul>
+                        <li><i class="fas fa-plane"></i> Flights included</li>
+                        <li><i class="fas fa-campground"></i> Luxury safari lodges</li>
+                        <li><i class="fas fa-paw"></i> Wildlife game drives</li>
+                        <li><i class="fas fa-utensils"></i> All meals included</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About Travanah</h2>
+            <p>At Travanah, we believe that travel is more than just visiting new places; it's about experiencing different cultures, creating lasting memories, and discovering yourself. We are passionate about crafting unique and personalized travel experiences that cater to your every need.</p>
+            <p>Our team of experienced travel experts is dedicated to providing exceptional service and ensuring your journey is seamless and unforgettable. From luxurious getaways to adventurous expeditions, Travanah is your trusted partner in exploring the world.</p>
+        </div>
+    </section>
+
+
+    <section id="contact" class="section bg-dark">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Have questions or ready to book your next adventure? Get in touch with us!</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5"></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Travanah. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
 </body>
 </html>
+
