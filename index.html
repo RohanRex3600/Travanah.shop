@@ -66,38 +66,45 @@
 
     <!-- Header -->
     <header class="bg-white/80 backdrop-blur-sm fixed w-full z-50 top-0 shadow-md">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold text-teal-600">TRAVANAH</span></a>
+        <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <!-- Your Logo Here -->
+            <a href="#" class="flex items-center">
+                <img src="images/logo.png" alt="Travanah Logo" class="h-8 sm:h-10 w-auto">
+            </a>
+            
+            <!-- Desktop Menu Links -->
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="#destinations" class="text-gray-600 hover:text-teal-600 transition duration-300">Destinations</a>
+                <a href="#how-it-works" class="text-gray-600 hover:text-teal-600 transition duration-300">How It Works</a>
+                <a href="#faq" class="text-gray-600 hover:text-teal-600 transition duration-300">FAQ</a>
                 <a href="#about" class="text-gray-600 hover:text-teal-600 transition duration-300">About</a>
-                <a href="#gallery" class="text-gray-600 hover:text-teal-600 transition duration-300">Gallery</a>
-                <a href="#contact" class="bg-teal-600 text-white px-6 py-2 rounded-full hover:bg-teal-700 transition duration-300 shadow-lg">Contact Us</a>
+                <a href="#contact" class="bg-teal-600 text-white px-6 py-2 rounded-full hover:bg-teal-700 transition duration-300 shadow-lg">Get Early Access</a>
             </div>
+            
+            <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
                     <i class="fas fa-bars fa-lg"></i>
                 </button>
             </div>
         </nav>
+        
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur-sm">
-            <a href="#destinations" class="block py-2 px-4 text-sm text-gray-700 hover:bg-teal-50">Destinations</a>
-            <a href="#about" class="block py-2 px-4 text-sm text-gray-700 hover:bg-teal-50">About</a>
-            <a href="#gallery" class="block py-2 px-4 text-sm text-gray-700 hover:bg-teal-50">Gallery</a>
-            <a href="#contact" class="block py-2 px-4 text-sm text-gray-700 hover:bg-teal-50">Contact Us</a>
+            <a href="#how-it-works" class="block py-3 px-4 text-base text-gray-700 hover:bg-teal-50">How It Works</a>
+            <a href="#faq" class="block py-3 px-4 text-base text-gray-700 hover:bg-teal-50">FAQ</a>
+            <a href="#about" class="block py-3 px-4 text-base text-gray-700 hover:bg-teal-50">About</a>
+            <a href="#contact" class="block py-3 px-4 text-base text-gray-700 hover:bg-teal-50">Get Early Access</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-bg h-screen flex items-center justify-center text-white text-center fade-in">
-        <div class="container mx-auto px-6">
-            <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tight leading-tight">ASK AROUND</h1>
-            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto font-light">Ask anything, anywhere. Get real-time answers from locals and fellow explorers to find exactly what you're looking for, right now.</p>
-            <a href="#destinations" class="bg-teal-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-teal-700 transition duration-300 transform hover:scale-105 shadow-2xl">Explore Destinations</a>
+    <section class="hero-bg h-[85vh] sm:h-screen flex items-center justify-center text-white text-center fade-in">
+        <div class="container mx-auto px-4">
+             <h1 class="text-4xl sm:text-6xl md:text-7xl font-black mb-4 tracking-tight uppercase">Ask Around</h1>
+             <p class="text-base sm:text-lg md:text-xl mb-8 max-w-2xl mx-auto font-light">Ask anything, anywhere. Get real-time answers from locals and fellow explorers to find exactly what you're looking for, right now.</p>
+             <a href="#contact" class="bg-teal-600 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-teal-700 transition duration-300 transform hover:scale-105 shadow-2xl">Join the Waitlist</a>
         </div>
     </section>
-
     <!-- Popular Destinations Section -->
     <section id="destinations" class="py-20 bg-white">
         <div class="container mx-auto px-6">
@@ -488,6 +495,7 @@ s0.parentNode.insertBefore(s1,s0);
 
 </body>
 </html>
+
 
 
 
