@@ -436,35 +436,29 @@
                 icon.classList.toggle('fa-minus');
             });
         });
-// Code to handle form submission
-const form = document.getElementById('contact-form');
-const formMessage = document.getElementById('form-message');
+// --- Connects form to Google Sheets ---
+const scriptURL = 'https://script.google.com/macros/s/AKfycbz8puYBF98wqxGBovhtQir8K2D4hofSZeWNHTGjMIEdV5iQ_ZrvKpWdeLV7n943zLPk/exec';
+const form = document.getElementById('submit-to-google-sheet');
 
 form.addEventListener('submit', e => {
-  e.preventDefault(); // This stops the page from reloading
+    e.preventDefault();
+    const submitButton = form.querySelector('button');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Submitting...';
 
-  const scriptURL = 'YOUR_WEB_APP_URL_HERE'; // PASTE YOUR URL HERE
-  const submitButton = form.querySelector('button');
-
-  submitButton.disabled = true;
-  submitButton.textContent = 'Submitting...';
-  formMessage.textContent = '';
-
-  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    .then(response => {
-      form.reset();
-      submitButton.disabled = false;
-      submitButton.textContent = 'Notify Me!';
-      formMessage.textContent = 'Success! Thank you for joining the Travanah community.';
-      formMessage.style.color = 'green';
-    })
-    .catch(error => {
-      submitButton.disabled = false;
-      submitButton.textContent = 'Notify Me!';
-      formMessage.textContent = 'Error! Something went wrong. Please try again.';
-      formMessage.style.color = 'red';
-      console.error('Error!', error.message);
-    });
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            alert('Success! Thanks for joining.');
+            form.reset();
+            submitButton.disabled = false;
+            submitButton.textContent = 'Notify Me!';
+        })
+        .catch(error => {
+            alert('Error! Please try again.');
+            submitButton.disabled = false;
+            submitButton.textContent = 'Notify Me!';
+            console.error('Error!', error.message);
+        });
 });
     </script>
 <!--Start of Tawk.to Script-->
@@ -484,6 +478,7 @@ s0.parentNode.insertBefore(s1,s0);
 
 </body>
 </html>
+
 
 
 
