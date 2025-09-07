@@ -419,6 +419,19 @@
                 lightbox.style.display = 'none';
             }
         });
+// FAQ Accordion functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('fa-plus');
+                icon.classList.toggle('fa-minus');
+            });
+        });
     </script>
 <!--Start of Tawk.to Script-->
     <script type="text/javascript">
@@ -437,6 +450,7 @@ s0.parentNode.insertBefore(s1,s0);
 
 </body>
 </html>
+
 
 
 
