@@ -1,147 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travanah - Explore the World</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travanah - Your Adventure Awaits</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .gallery-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>
-    <header class="hero-section">
-        <nav class="navbar">
-            <div class="container">
-                <a href="#" class="logo">
-                    <img src="your-logo.png" alt="Travanah Logo" style="height: 40px;"> 
-                    Travanah
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#destinations">Destinations</a></li>
-                    <li><a href="#packages">Packages</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </nav>
-        <div class="hero-content container">
-            <h1>Your Journey Begins Here</h1>
-            <p>Discover breathtaking destinations and create unforgettable memories with Travanah.</p>
-            <a href="#packages" class="btn btn-primary">Explore Packages</a>
-        </div>
-    </header>
+<body class="bg-gray-50 text-gray-800">
 
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-sm fixed w-full z-50 top-0 shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-teal-600">Travanah<span class="text-gray-700">.shop</span></a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#destinations" class="text-gray-600 hover:text-teal-600 transition duration-300">Destinations</a>
+                <a href="#about" class="text-gray-600 hover:text-teal-600 transition duration-300">About</a>
+                <a href="#gallery" class="text-gray-600 hover:text-teal-600 transition duration-300">Gallery</a>
+                <a href="#contact" class="bg-teal-600 text-white px-6 py-2 rounded-full hover:bg-teal-700 transition duration-300 shadow-lg">Contact Us</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                    <i class="fas fa-bars fa-lg"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur-sm">
+            <a href="#destinations" class="block py-2 px-4 text-sm text-gray-700 hover:bg-teal-50">Destinations</a>
+            <a href="#about" class="block py-2 px-4 text-sm text-gray-700 hover:bg-teal-50">About</a>
+            <a href="#gallery" class="block py-2 px-4 text-sm text-gray-700 hover:bg-teal-50">Gallery</a>
+            <a href="#contact" class="block py-2 px-4 text-sm text-gray-700 hover:bg-teal-50">Contact Us</a>
+        </div>
+    </header>
 
-    <section id="destinations" class="section">
-        <div class="container">
-            <h2>Popular Destinations</h2>
-            <div class="destination-grid">
-                <div class="destination-card">
-                    <img src="https://images.unsplash.com/photo-1506197061617-dc7150c95213?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NDU3ODh8MHwxfHNlYXJjaHwxNXx8UGFyaXMlMjB0cmF2ZWx8ZW58MHx8fHwxNjk5MjI3MTA1fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Paris">
-                    <h3>Paris, France</h3>
-                    <p>The City of Love, renowned for its art, fashion, and cuisine.</p>
-                </div>
-                <div class="destination-card">
-                    <img src="https://images.unsplash.com/photo-1549646535-983ce47dd020?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NDU3ODh8MHwxfHNlYXJjaHw3fHxTeWRuZXklMjBUcmF2ZWx8ZW58MHx8fHwxNjk5MjI3MTU5fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Sydney">
-                    <h3>Sydney, Australia</h3>
-                    <p>Iconic opera house, beautiful beaches, and vibrant city life.</p>
-                </div>
-                <div class="destination-card">
-                    <img src="https://images.unsplash.com/photo-1528127269322-c322b724570d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NDU3ODh8MHwxfHNlYXJjaHwxMHx8VHJhdmVsJTIwVG9reW98ZW58MHx8fHwxNjk5MjI3MjEyfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Tokyo">
-                    <h3>Tokyo, Japan</h3>
-                    <p>A mesmerizing blend of traditional culture and futuristic technology.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Hero Section -->
+    <section class="hero-bg h-screen flex items-center justify-center text-white text-center fade-in">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tight leading-tight">Your Adventure Awaits</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto font-light">Discover breathtaking destinations and create memories that will last a lifetime. Your journey starts here.</p>
+            <a href="#destinations" class="bg-teal-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-teal-700 transition duration-300 transform hover:scale-105 shadow-2xl">Explore Destinations</a>
+        </div>
+    </section>
 
+    <!-- Popular Destinations Section -->
+    <section id="destinations" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-2 text-gray-800">Popular Destinations</h2>
+            <p class="text-center text-gray-500 mb-12">Handpicked places for your next unforgettable trip.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Destination Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=1974&auto=format&fit=crop" alt="Paris" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">Paris, France</h3>
+                        <p class="text-gray-600 mb-4">The city of love, lights, and endless art. A timeless destination for dreamers.</p>
+                        <a href="#" class="text-teal-600 font-semibold hover:underline">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <!-- Destination Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?q=80&w=2070&auto=format&fit=crop" alt="Kyoto" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">Kyoto, Japan</h3>
+                        <p class="text-gray-600 mb-4">Experience serene temples, traditional gardens, and the beauty of ancient Japan.</p>
+                        <a href="#" class="text-teal-600 font-semibold hover:underline">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <!-- Destination Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?q=80&w=2070&auto=format&fit=crop" alt="Santorini" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">Santorini, Greece</h3>
+                        <p class="text-gray-600 mb-4">Whitewashed villages clinging to cliffs above the sparkling Aegean Sea.</p>
+                        <a href="#" class="text-teal-600 font-semibold hover:underline">Learn More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section id="packages" class="section bg-light">
-        <div class="container">
-            <h2>Our Travel Packages</h2>
-            <div class="package-grid">
-                <div class="package-card">
-                    <h3>European Grand Tour</h3>
-                    <p class="price">$2,500 <span class="duration">/ 10 Days</span></p>
-                    <ul>
-                        <li><i class="fas fa-plane"></i> Flights included</li>
-                        <li><i class="fas fa-hotel"></i> 4-star accommodation</li>
-                        <li><i class="fas fa-car"></i> Guided tours</li>
-                        <li><i class="fas fa-utensils"></i> Daily breakfast</li>
-                    </ul>
-                    <a href="#" class="btn btn-secondary">View Details</a>
-                </div>
-                <div class="package-card">
-                    <h3>Southeast Asian Adventure</h3>
-                    <p class="price">$1,800 <span class="duration">/ 7 Days</span></p>
-                    <ul>
-                        <li><i class="fas fa-plane"></i> Flights included</li>
-                        <li><i class="fas fa-hotel"></i> Boutique hotels</li>
-                        <li><i class="fas fa-ship"></i> Island hopping</li>
-                        <li><i class="fas fa-utensils"></i> Authentic local cuisine</li>
-                    </ul>
-                    <a href="#" class="btn btn-secondary">View Details</a>
-                </div>
-                <div class="package-card">
-                    <h3>African Safari Experience</h3>
-                    <p class="price">$3,800 <span class="duration">/ 8 Days</span></p>
-                    <ul>
-                        <li><i class="fas fa-plane"></i> Flights included</li>
-                        <li><i class="fas fa-campground"></i> Luxury safari lodges</li>
-                        <li><i class="fas fa-paw"></i> Wildlife game drives</li>
-                        <li><i class="fas fa-utensils"></i> All meals included</li>
-                    </ul>
-                    <a href="#" class="btn btn-secondary">View Details</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <img src="https://images.unsplash.com/photo-1523908511403-7fc7b25592f4?q=80&w=1994&auto=format&fit=crop" class="rounded-2xl shadow-2xl w-full" alt="About Travanah">
+            </div>
+            <div class="md:w-1/2 text-center md:text-left">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">About Travanah</h2>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Welcome to Travanah, the brainchild of Rohan Choudhary. We believe travel is more than just seeing new places; it's about experiencing new cultures, creating lasting memories, and transforming your perspective. Our mission is to craft unique and personalized travel experiences that go beyond the ordinary, ensuring every journey is as seamless as it is unforgettable.
+                </p>
+                <a href="#contact" class="bg-gray-800 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-900 transition duration-300">Plan Your Trip</a>
+            </div>
+        </div>
+    </section>
 
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Why Choose Us?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <div class="p-6">
+                    <div class="flex items-center justify-center h-20 w-20 mx-auto mb-6 bg-teal-100 rounded-full">
+                         <i class="fas fa-map-marked-alt fa-2x text-teal-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-gray-900">Expert Guides</h3>
+                    <p class="text-gray-600">Our knowledgeable guides are passionate about sharing the best of their regions with you.</p>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-center h-20 w-20 mx-auto mb-6 bg-teal-100 rounded-full">
+                        <i class="fas fa-pencil-ruler fa-2x text-teal-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-gray-900">Customized Itineraries</h3>
+                    <p class="text-gray-600">We tailor every trip to your interests, budget, and style, creating a truly personal journey.</p>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-center h-20 w-20 mx-auto mb-6 bg-teal-100 rounded-full">
+                        <i class="fas fa-headset fa-2x text-teal-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-gray-900">24/7 Support</h3>
+                    <p class="text-gray-600">Travel with peace of mind knowing our team is always available to assist you, day or night.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2>About Travanah</h2>
-            <p>At Travanah, we believe that travel is more than just visiting new places; it's about experiencing different cultures, creating lasting memories, and discovering yourself. We are passionate about crafting unique and personalized travel experiences that cater to your every need.</p>
-            <p>Our team of experienced travel experts is dedicated to providing exceptional service and ensuring your journey is seamless and unforgettable. From luxurious getaways to adventurous expeditions, Travanah is your trusted partner in exploring the world.</p>
-        </div>
-    </section>
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Traveler's Gallery</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="grid gap-4">
+                    <div><img class="gallery-img h-auto max-w-full rounded-lg cursor-pointer" src="https://images.unsplash.com/photo-1505832688320-9e173b2a26b2?q=80&w=2070&auto=format&fit=crop" alt=""></div>
+                    <div><img class="gallery-img h-auto max-w-full rounded-lg cursor-pointer" src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=2070&auto=format&fit=crop" alt=""></div>
+                    <div><img class="gallery-img h-auto max-w-full rounded-lg cursor-pointer" src="https://images.unsplash.com/photo-1502602898657-3e91760c0337?q=80&w=2070&auto=format&fit=crop" alt=""></div>
+                </div>
+                <div class="grid gap-4">
+                    <div><img class="gallery-img h-auto max-w-full rounded-lg cursor-pointer" src="https://images.unsplash.com/photo-1534529328216-52d3a3d54f54?q=80&w=1964&auto=format&fit=crop" alt=""></div>
+                    <div><img class="gallery-img h-auto max-w-full rounded-lg cursor-pointer" src="https://images.unsplash.com/photo-1506973035872-1ce022b3a954?q=80&w=2070&auto=format&fit=crop" alt=""></div>
+                    <div><img class="gallery-img h-auto max-w-full rounded-lg cursor-pointer" src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=1974&auto=format&fit=crop" alt=""></div>
+                </div>
+                <div class="grid gap-4">
+                    <div><img class="gallery-img h-auto max-w-full rounded-lg cursor-pointer" src="https://images.unsplash.com/photo-1517400508447-f8a614949a63?q=80&w=2070&auto=format&fit=crop" alt=""></div>
+                    <div><img class="gallery-img h-auto max-w-full rounded-lg cursor-pointer" src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?q=80&w=1974&auto=format&fit=crop" alt=""></div>
+                    <div><img class="gallery-img h-auto max-w-full rounded-lg cursor-pointer" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop" alt=""></div>
+                </div>
+                <div class="grid gap-4">
+                    <div><img class="gallery-img h-auto max-w-full rounded-lg cursor-pointer" src="https://images.unsplash.com/photo-1483683839922-0a14a1da2472?q=80&w=2070&auto=format&fit=crop" alt=""></div>
+                    <div><img class="gallery-img h-auto max-w-full rounded-lg cursor-pointer" src="https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=1974&auto=format&fit=crop" alt=""></div>
+                    <div><img class="gallery-img h-auto max-w-full rounded-lg cursor-pointer" src="https://images.unsplash.com/photo-1528181304800-259b08848526?q=80&w=2070&auto=format&fit=crop" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
 
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                    <p class="text-gray-600 mb-8">Have questions or ready to book your next adventure? Send us a message!</p>
+                    <form action="#" method="POST">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-teal-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-teal-700 transition duration-300">Send Message</button>
+                    </form>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="rounded-lg overflow-hidden shadow-xl h-full">
+                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.2798821423!2d-74.25986540306818!3d40.69767006272104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1694553229864!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section id="contact" class="section bg-dark">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p>Have questions or ready to book your next adventure? Get in touch with us!</p>
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" rows="5"></textarea>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Travanah.shop</h3>
+                    <p class="text-gray-400">Crafting unforgettable journeys across the globe.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul>
+                        <li class="mb-2"><a href="#destinations" class="hover:text-teal-400 transition duration-300">Destinations</a></li>
+                        <li class="mb-2"><a href="#about" class="hover:text-teal-400 transition duration-300">About Us</a></li>
+                        <li class="mb-2"><a href="#gallery" class="hover:text-teal-400 transition duration-300">Gallery</a></li>
+                        <li class="mb-2"><a href="#contact" class="hover:text-teal-400 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:text-teal-400 transition duration-300">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-teal-400 transition duration-300">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500">
+                <p>&copy; 2025 Travanah.shop. All Rights Reserved. Designed with ❤️ by Rohan Choudhary.</p>
+            </div>
+        </div>
+    </footer>
 
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth Scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Travanah. All rights reserved.</p>
-        </div>
-    </footer>
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryImages = document.querySelectorAll('.gallery-img');
+        const lightboxClose = document.getElementById('lightbox-close');
 
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
+            });
+        });
 
-    <script src="script.js"></script>
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
+        lightboxClose.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+
+    </script>
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -151,9 +339,22 @@ s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
-</script>
-<!--End of Tawk.to Script-->
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
